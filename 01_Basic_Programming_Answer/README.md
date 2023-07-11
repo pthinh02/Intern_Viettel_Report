@@ -75,5 +75,70 @@ The "typedef" keyword in the C programming language is used to define aliases ex
 
 - *Increased code flexibility and portability*: Using typedef makes code easily movable between different platforms or programming environments. We just need to change the typedef definition for each platform, without modifying the entire code.
 
+ 
+## Little Endian & Big Endian
+
+For example, integer *123456789*  is represented in binary would be: (supposed that sizeof(int) = 4 bytes)
+> 00000111 01011011 11001101 00010101
+
+or in hexa:
+> 07 5b cd 15
+
+ **Little endian** and big endian are two different methods for storing data. The difference between little endian and big endian in storage is in the ordering of the data bytes.
+
+In little endian storage, the last byte in the above binary representation is written first. For example:
+>15 cd 5b 07
+
+**Big endian** is the opposite, it is the normal orderly data recording mechanism that we still use
+For example:
+>07 5b cd 15
+
+This simple C program that gives us a look at the arrangement of bytes in memory:
+
+```c
+#include <stdio.h>
+
+/* function to show bytes in memory, from location start to start+n */
+void show_mem_rep (char *start, int n)
+{
+  int index;
+  for (index = 0; index < n; index++)
+    printf (" %.2x", start[index]);
+  printf ("\n");
+}
+
+/* Main function to call above function for 0x01234567 */
+int main ()
+{
+  int i = 0x01234567;
+  show_mem_rep ((char *) &i, sizeof (i));
+  return 0;
+}
+```
+If your computer is little endian, output is:
+> 67 45 23 01
+
+If your computer is big endian, output is: 
+> 01 23 45 67
+
+Another way to know your computer either Little Endian or Big Endian is use this program:
+```c
+#include <stdio.h>
+
+int
+main ()
+{
+  unsigned int i = 1;
+  char *c = (char *) &i;
+  if (*c)
+    printf ("Little endian");
+  else
+    printf ("Big endian");
+  return 0;
+}
+```
+
+
+
 
 
