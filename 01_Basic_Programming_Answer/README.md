@@ -1,6 +1,25 @@
+#TABLE OF CONTENTS
+- [Question](#question)
+  - [1. What is difference between File Descriptor and File Pointer?](#1-what-is-difference-between-file-descriptor-and-file-pointer)
+  - [2. #include is in #ifdef and #endif macro, what will happens?](#2-include-is-in-ifdef-and-endif-macro-what-will-happens)
+  - [3. Why we need 'typedef' keyword?](#3-why-we-need-typedef-keyword)
+    - [Little Endian \& Big Endian](#little-endian--big-endian)
+  - [4. What happens when 2 processes work on the same file at the same time?](#4-what-happens-when-2-processes-work-on-the-same-file-at-the-same-time)
+  - [5. Where is the process's memory stored in running time?](#5-where-is-the-processs-memory-stored-in-running-time)
+  - [6. When do the compiler not perform inlining?](#6-when-do-the-compiler-not-perform-inlining)
+  - [7. Application of pointer to pointer?](#7-application-of-pointer-to-pointer)
+  - [8. Types of macro](#8-types-of-macro)
+    - [8.1. Object-like macros](#81-object-like-macros)
+    - [8.2. Function-like macros](#82-function-like-macros)
+    - [8.3. Stringizing operator](#83-stringizing-operator)
+    - [8.4. Concatenation](#84-concatenation)
+    - [8.5. Variadic macros](#85-variadic-macros)
+    - [8.6. Predefine macros](#86-predefine-macros)
+
+
 # Question
 
-## 1. **What is difference between File Descriptor and File Pointer?**
+## 1. What is difference between File Descriptor and File Pointer?
 
 **File descriptor** is simply an index into the file descriptor table. For each process in our operating system, there is a process control block(PCB). PCB keeps track of the context of the process. So one of the fields within this is an array called file descriptor table.
 This array keeps track of all the resources that the process owns and can operate on. The file descriptor table holds pointers to the resources. Resources could be
